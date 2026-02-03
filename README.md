@@ -85,3 +85,5 @@ The dataset contains only **1 table** with customer and transaction-related data
 | OrderCount                   | FLOAT         | Number of orders placed by the customer last month           |
 | DaySinceLastOrder            | FLOAT         | Days since the last order was placed by the customer        |
 | CashbackAmount               | FLOAT         | Average cashback received by the customer in the past month  |
+
+
