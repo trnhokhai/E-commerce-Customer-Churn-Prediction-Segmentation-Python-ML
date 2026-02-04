@@ -86,6 +86,8 @@ The dataset contains only **1 table** with customer and transaction-related data
 | DaySinceLastOrder            | FLOAT         | Days since the last order was placed by the customer        |
 | CashbackAmount               | FLOAT         | Average cashback received by the customer in the past month  |
 
+</details>
+
 ## Data Preprocessing & Exploratory Analysis (Selected)
 
 Before modeling, the dataset was reviewed and prepared to ensure data quality and consistency.
