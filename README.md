@@ -153,7 +153,7 @@ df['PreferredPaymentMode'] = df['PreferredPaymentMode'].replace({
 ```
 Standardizing categorical values prevents fragmented categories that could distort encoding and downstream model interpretation.
 
-**EDA Highlight: Churn Distribution**
+**Churn Distribution**
 [In 6]
 ```python
 sns.countplot(x='Churn', data=df)
