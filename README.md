@@ -86,4 +86,20 @@ The dataset contains only **1 table** with customer and transaction-related data
 | DaySinceLastOrder            | FLOAT         | Days since the last order was placed by the customer        |
 | CashbackAmount               | FLOAT         | Average cashback received by the customer in the past month  |
 
+## Data Preprocessing & Exploratory Analysis (Selected)
+
+Before modeling, the dataset was reviewed and prepared to ensure data quality and consistency.
+
+Key preprocessing steps included:
+- Handling missing values in key behavioral and transactional features.
+- Standardizing categorical values with similar meanings (e.g., payment methods).
+- Dropping identifier columns that do not contribute to prediction.
+
+[In 1]
+```python
+df.head(5)
+```
+# Display the first few rows
+df.head()
+
 
