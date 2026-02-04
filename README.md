@@ -158,7 +158,10 @@ Standardizing categorical values prevents fragmented categories that could disto
 ```python
 sns.countplot(x='Churn', data=df)
 ```
+
 [Out 6]
+
+
 <img width="581" height="427" alt="image" src="https://github.com/user-attachments/assets/1cf6e1bc-6414-4aab-84ae-410eeff5b422" />
 
 
