@@ -99,7 +99,8 @@ Key preprocessing steps included:
 ```python
 df.head(5)
 ```
-# Display the first few rows
-df.head()
+[Out 1]
+<img width="1387" height="221" alt="image" src="https://github.com/user-attachments/assets/4c23db61-2215-47b3-9c71-7af72eafdba1" />
+
 
 
