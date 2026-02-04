@@ -99,10 +99,25 @@ Key preprocessing steps included:
 
 [In 1]
 ```python
-df.head(5)
+df.head()
 ```
 [Out 1]
 <img width="1387" height="221" alt="image" src="https://github.com/user-attachments/assets/4c23db61-2215-47b3-9c71-7af72eafdba1" />
 
+**📝 Checked for Missing Values**  
+[In 2]
+```python
+# Check missing values in each column
+df.isnull().sum()
+```
+The columns with missing values are:
+
+   - `Tenure` - 264 missing values
+   - `WarehouseToHome` - 251 missing values
+   - `HourSpendOnApp` - 255 missing values
+   - `OrderAmountHikeFromlastYear` - 265 missing values
+   - `CouponUsed` - 256 missing values
+   - `OrderCount` - 258 missing values
+   - `DaySinceLastOrder` - 307 missing values
 
 
