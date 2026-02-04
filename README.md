@@ -162,5 +162,7 @@ sns.countplot(x='Churn', data=df)
 <img width="581" height="427" alt="image" src="https://github.com/user-attachments/assets/1cf6e1bc-6414-4aab-84ae-410eeff5b422" />
 
 
+
+
 After preprocessing, the dataset is clean, consistent, and suitable for churn modeling.
 Key behavioral and operational variables are preserved, allowing downstream models to focus on meaningful churn drivers rather than data quality issues.
