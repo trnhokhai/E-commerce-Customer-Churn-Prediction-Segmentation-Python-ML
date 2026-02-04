@@ -120,4 +120,11 @@ The columns with missing values are:
    - `OrderCount` - 258 missing values
    - `DaySinceLastOrder` - 307 missing values
 
+**📝 Checked for Duplicates**  
+[In 3]
+```python
+# Check for duplicate rows
+check_dup = df.duplicated().sum()
+```
+there were no duplicate entries.
 
