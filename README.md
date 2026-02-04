@@ -104,22 +104,32 @@ df.head()
 [Out 1]
 <img width="1387" height="221" alt="image" src="https://github.com/user-attachments/assets/4c23db61-2215-47b3-9c71-7af72eafdba1" />
 
+This initial review confirms the dataset structure, feature types, and customer-level granularity used throughout the analysis.
+
 **📝 Checked for Missing Values**  
 [In 2]
 ```python
 # Check missing values in each column
 df.isnull().sum()
 ```
-The columns with missing values are:
+### 🔍 Key Observations
 
-   - `Tenure` - 264 missing values
-   - `WarehouseToHome` - 251 missing values
-   - `HourSpendOnApp` - 255 missing values
-   - `OrderAmountHikeFromlastYear` - 265 missing values
-   - `CouponUsed` - 256 missing values
-   - `OrderCount` - 258 missing values
-   - `DaySinceLastOrder` - 307 missing values
+- Missing values are primarily concentrated in **behavioral and transactional features**, including:
+  - Customer tenure
+  - Engagement time
+  - Order activity
+  - Purchase recency
 
+- These features are **directly related to the customer lifecycle and purchasing behavior**, making proper handling of missing values **critical for accurate churn modeling**.
+
+#### 📌 Columns with Missing Values
+- **Tenure**
+- **WarehouseToHome**
+- **HourSpendOnApp**
+- **OrderAmountHikeFromLastYear**
+- **CouponUsed**
+- **OrderCount**
+- **DaySinceLastOrder**
 **Handling Missing Values** 
 [In 3]
 ```python
@@ -130,8 +140,10 @@ for col in missing_cols:
 # Verify that there are no missing values left
 df[missing_cols].isnull().sum()
 ```
-Missing values were concentrated in behavioral features related to engagement and purchasing activity.
-Median imputation was applied to preserve distribution shape and avoid skewing churn-related patterns.
+### 🧠 Rationale for Missing Value Treatment
+
+- **Median imputation** was applied to preserve the original data distribution and minimize sensitivity to outliers.
+- This approach helps maintain **churn-related behavioral patterns** while ensuring **model compatibility and stability**.
 
 **📝 Checked for Duplicates**  
 [In 4]
@@ -139,11 +151,11 @@ Median imputation was applied to preserve distribution shape and avoid skewing c
 # Check for duplicate rows
 check_dup = df.duplicated().sum()
 ```
-Aftering checkeing for duplicate rows in the dataset and found that there were no duplicate entries.
+No duplicate customer records were found, confirming that each row represents a unique customer.
 
 **Cleaning & Standardizing Categorical Values** 
 
-# Standardize categorical values for consistency
+**Standardize categorical values for consistency**
 [In 5]
 ```python
 df['PreferredPaymentMode'] = df['PreferredPaymentMode'].replace({
@@ -163,4 +175,415 @@ sns.countplot(x='Churn', data=df)
 
 <img width="581" height="427" alt="image" src="https://github.com/user-attachments/assets/1cf6e1bc-6414-4aab-84ae-410eeff5b422" />
 
-The class imbalance between churned and retained customers reinforces the need to prioritize recall when building churn prediction models.
+### 💡 Insight
+
+- The dataset exhibits **class imbalance**, with **churned customers representing a smaller proportion** of the overall customer base.
+
+### 📊 Business Implication
+
+- Although churn is a **minority event**, it carries **high business impact**.
+- Therefore, models should **prioritize recall** to reduce the risk of missing **at-risk customers** and enable **proactive retention actions**.
+
+
+**Customer Lifecycle: Tenure vs Churn
+
+<img width="480" height="460" alt="image" src="https://github.com/user-attachments/assets/e18620b6-12e5-4456-9ff8-5476376af213" />
+
+### 💡 Insight
+
+- Churned customers tend to have **significantly shorter tenure**, indicating **early disengagement**.
+
+### 📊 Business Implication
+
+- Improving **early-stage onboarding and engagement** is critical to **reducing churn risk**.
+
+**Engagement Recency: Days Since Last Order**
+
+<img width="557" height="432" alt="image" src="https://github.com/user-attachments/assets/83ef973d-0e1c-465f-ba58-5f500baeec83" />
+
+### 💡 Insight
+
+- Churned customers typically have **longer gaps since their last order**, signaling **declining engagement** before churn occurs.
+
+### 📊 Business Implication
+
+- **Recency metrics** can be used as **early warning signals** to enable **proactive customer retention actions**.
+
+
+**Service Experience: Complaints vs Churn**
+
+```python
+# Visualize churn rate by complaint status
+
+complain_churn_table.plot(
+    kind='bar',
+    figsize=(8, 5),
+    color=['steelblue', 'salmon']
+)
+
+plt.title('Churn Rate by Complaint Status')
+plt.xlabel('Complain (0 = No, 1 = Yes)')
+plt.ylabel('Percentage (%)')
+plt.legend(['Non-Churn', 'Churn'])
+plt.xticks(rotation=0)
+plt.show()
+```
+
+<img width="686" height="471" alt="image" src="https://github.com/user-attachments/assets/afb131ed-cd53-463a-84b6-e9d9dc85dc8b" />
+
+### 💡 Insight
+
+- Customers who submitted **complaints** show **substantially higher churn rates** compared to those without complaints.
+
+### 📊 Business Implication
+
+- **Service recovery and effective complaint resolution** play a critical role in **customer retention**.
+
+### 🧾 Summary of EDA Insights
+
+- Churn is closely linked to **customer lifecycle and engagement patterns**.
+- **Service quality**, particularly **customer complaints**, is a strong indicator of churn.
+
+## 🔮 Churn Prediction – Identifying At-Risk Customers
+
+The objective of this step is to determine whether **customer churn can be predicted in advance** using **behavioral, service, and logistics-related features**, enabling **early intervention and retention planning**.
+
+Rather than optimizing for overall accuracy, the modeling approach **prioritizes recall**, as failing to identify **churned customers** carries a **higher business cost** than false positives.
+
+**Feature Selection & Target Definition**
+```python
+# Define features and target
+
+y = df['Churn']
+X = df.drop(columns=['CustomerID', 'Churn'])
+
+print("Feature shape:", X.shape)
+print("Target shape:", y.shape)
+```
+### 🧠 Rationale
+
+- Input features capture signals related to **customer lifecycle**, **engagement**, **service experience**, and **logistics**.
+- The target variable (**Churn**) represents whether a customer has **left the platform**.
+
+**Train-Test Split**
+
+```python
+X_train, X_test, y_train, y_test = train_test_split(
+    X_encoded,
+    y,
+    test_size=0.3,
+    random_state=42,
+    stratify=y
+)
+```
+### 🧠 Rationale
+
+- **Stratified splitting** preserves the original **churn ratio** in both the training and testing sets.
+- This ensures **reliable model evaluation** under **class imbalance**.
+
+**Baseline Model: Logistic Regression**
+```python
+log_reg = LogisticRegression(max_iter=1000)
+log_reg.fit(X_train, y_train)
+
+y_pred_lr = log_reg.predict(X_test)
+print(classification_report(y_test, y_pred_lr))
+```
+
+<img width="457" height="162" alt="image" src="https://github.com/user-attachments/assets/d138f2c1-97ae-4cba-8915-08a993af014f" />
+
+### 💡 Insight
+
+- The baseline model confirms that **customer churn can be predicted** using the available customer data.
+- However, **recall for churned customers is limited**, motivating the use of a **more flexible model**.
+
+## 🌲 Final Model: Random Forest Classifier
+
+```python
+from sklearn.ensemble import RandomForestClassifier
+
+rf_model = RandomForestClassifier(
+    n_estimators=200,
+    random_state=42,
+    class_weight='balanced'
+)
+
+rf_model.fit(X_train, y_train)
+y_pred_rf = rf_model.predict(X_test)
+
+print(classification_report(y_test, y_pred_rf))
+```
+
+<img width="430" height="172" alt="image" src="https://github.com/user-attachments/assets/8171721b-f236-43b5-be08-82c85cc9ba6d" />
+
+
+### 💡 Insight
+
+- The **Random Forest model** improves **recall for churned customers** compared to the baseline model.
+- This makes it more suitable for **identifying at-risk customers** in a **business setting**.
+
+# 📊 Model Evaluation Summary
+
+### 🔑 Key Takeaways
+
+- Customer churn can be predicted with **meaningful reliability** using **behavioral, service, and logistics data**.
+- **Prioritizing recall** helps minimize missed churned customers, supporting **proactive retention efforts**.
+- **Tree-based models** better capture **non-linear customer behavior patterns** compared to linear baselines.
+
+## 🏢 Business Interpretation
+
+From a **business and supply chain perspective**, churn prediction enables:
+
+- **Early identification** of potential demand loss
+- **Targeted retention actions** before customers disengage completely
+- **Improved planning** for customer support and operational resources
+
+The model serves as a **decision-support tool**, not an **automated decision-maker**.
+
+## 🔑 Key Churn Drivers & Model Interpretation
+
+This section focuses on explaining **why customers churn**, using **model interpretation** to translate predictive results into **actionable business and operational insights**.
+
+Understanding churn drivers is critical to ensure that predictive models support **decision-making**, not just prediction.
+
+```python
+feature_importance = pd.DataFrame({
+    'Feature': X_encoded.columns,
+    'Importance': rf_model.feature_importances_
+})
+
+# Sort features by importance
+feature_importance = feature_importance.sort_values(
+    by='Importance',
+    ascending=False
+)
+```
+<img width="882" height="457" alt="image" src="https://github.com/user-attachments/assets/555ded13-f5b8-46a3-ae8c-f755a979584e" />
+
+### 🔑 Key Drivers Identified
+
+The most influential churn drivers include:
+
+- **Tenure**
+- **DaySinceLastOrder**
+- **CashbackAmount**
+- **Complain**
+- **WarehouseToHome**
+
+These features capture a combination of **customer lifecycle**, **engagement behavior**, **service quality**, and **logistics experience**.
+
+### 💡 Insights
+
+**Customer lifecycle matters:**  
+Customers with **shorter tenure** and **longer gaps since their last order** are significantly more likely to churn, indicating **early disengagement patterns**.
+
+**Service experience is critical:**  
+Customers who submitted **complaints** show a **higher churn risk**, emphasizing the importance of effective **service recovery**.
+
+**Logistics plays a supporting role:**  
+Greater **warehouse-to-home distance** correlates with higher churn risk, suggesting that **delivery experience** influences customer retention.
+
+**Incentives alone are insufficient:**  
+While **cashback** impacts retention, it cannot fully compensate for **poor engagement** or **service issues**.
+
+## 🏭 Business & Supply Chain Implications
+
+From an **operational and supply chain perspective**:
+
+- Churn is not driven by a single factor, but by the **interaction of engagement, service, and logistics performance**.
+- Monitoring **lifecycle and recency metrics** enables **early detection of potential demand loss**.
+- **Service quality** and **last-mile delivery experience** should be integrated into **retention planning**, not treated separately from marketing initiatives.
+
+These insights directly inform **targeted retention strategies** and **operational improvement initiatives**.
+
+
+## 7. 👥 Customer Segmentation – Understanding Different Types of Churned Customers
+
+While **churn prediction** identifies **who is at risk**, **segmentation** helps explain **how churned customers differ from one another**.
+
+This step focuses on **segmenting churned customers only** to support **targeted retention strategies** and **operational actions**.
+```python
+cluster_features = [
+    'Tenure',
+    'HourSpendOnApp',
+    'CashbackAmount',
+    'WarehouseToHome',
+    'DaySinceLastOrder'
+]
+
+X_cluster = df_churned[cluster_features]
+
+X_cluster.head()
+```
+### 🧠 Rationale
+
+- Segmentation focuses on **customers who have already churned**.
+- Selected features represent **engagement**, **lifecycle**, **incentives**, and **logistics experience**.
+
+**Determining the Number of Clusters (Elbow Method)**
+
+```python
+inertia = []
+
+K_range = range(2, 8)
+
+for k in K_range:
+    kmeans = KMeans(n_clusters=k, random_state=42)
+    kmeans.fit(X_cluster_scaled)
+    inertia.append(kmeans.inertia_)
+
+plt.figure(figsize=(6,4))
+plt.plot(K_range, inertia, marker='o')
+plt.xlabel('Number of Clusters (k)')
+plt.ylabel('Inertia')
+plt.title('Elbow Method for KMeans')
+plt.show()
+```
+<img width="547" height="393" alt="image" src="https://github.com/user-attachments/assets/93429b32-e692-46f3-8492-b49e796f1fe0" />
+
+The elbow point suggests k = 3, balancing simplicity and interpretability.
+
+**K-Means Clustering**
+```python
+kmeans = KMeans(n_clusters=3, random_state=42)
+df_churned['Cluster'] = kmeans.fit_predict(X_cluster_scaled)
+
+df_churned['Cluster'].value_counts()
+```
+<img width="122" height="127" alt="image" src="https://github.com/user-attachments/assets/9eb335b2-fe98-4d3a-9ff6-6476b50b30f9" />
+
+
+**Cluster Profiling**
+
+```python
+cluster_summary = (
+    df_churned
+    .groupby('Cluster')[cluster_features]
+    .mean()
+    .round(2)
+)
+
+cluster_summary
+```
+<img width="657" height="155" alt="image" src="https://github.com/user-attachments/assets/23f2789f-ad9e-4ea4-8202-949d62dbf1d1" />
+
+### 🧩 Segment Interpretation
+
+Based on cluster profiling, **three distinct churn segments** emerge:
+
+---
+
+#### 🔹 Cluster 0 – Early Drop-off Customers
+- **Short tenure** and **low engagement**
+- Churn shortly after onboarding  
+
+**Interpretation:**  
+Customers fail to build initial engagement or perceive early value.
+
+---
+
+#### 🔹 Cluster 1 – Disengaged Long-Tenure Customers
+- **Longer tenure** with **increasing inactivity**
+- Higher **days since last order**  
+
+**Interpretation:**  
+Previously engaged customers gradually disengage, often due to **declining experience** or **unresolved issues**.
+
+---
+
+#### 🔹 Cluster 2 – Logistics-Sensitive Customers
+- Higher **warehouse-to-home distance**
+- Moderate engagement but higher churn risk tied to **fulfillment experience**  
+
+**Interpretation:**  
+Churn is influenced more by **delivery experience and logistics constraints** than by engagement alone.
+
+---
+
+### 🏢 Business & Operational Implications
+
+**Early Drop-off Customers**
+- Improve **onboarding**, **early incentives**, and **first-order experience**
+
+**Disengaged Long-Tenure Customers**
+- Prioritize **re-engagement campaigns** and **proactive service outreach**
+
+**Logistics-Sensitive Customers**
+- Review **last-mile delivery strategies** and set **clearer delivery expectations**
+
+---
+
+Segmentation highlights that **churn is not a single behavior**, and effective retention strategies must be **segment-specific**.
+
+## 8. 📈 Business Recommendations & Strategic Takeaways
+
+This section consolidates insights from **exploratory analysis**, **churn prediction**, and **customer segmentation** into **actionable business and operational recommendations**.
+
+The focus is on translating analytics into **decisions that reduce churn**, **stabilize demand**, and **improve customer experience**.
+
+---
+
+### 🧾 Summary of Key Findings
+
+- Customer churn is strongly influenced by **customer lifecycle and engagement patterns**, particularly **tenure** and **recency**.
+- **Service experience**, especially **customer complaints**, is a major driver of churn.
+- **Logistics factors**, such as **warehouse-to-home distance**, contribute to churn risk and should not be overlooked.
+- Churned customers are **not homogeneous** and can be grouped into **distinct behavioral segments**.
+
+---
+
+### 🧠 Strategic Business Recommendations
+
+#### 1️⃣ Strengthen Early Customer Engagement
+- Target customers with **short tenure** and **declining engagement** through onboarding improvements and early engagement campaigns.
+- Improve **first-order experience** to reduce early-stage churn.
+
+**Business Impact:**  
+Reduces early customer drop-off and improves **customer lifetime value**.
+
+---
+
+#### 2️⃣ Use Churn Risk Signals for Proactive Retention
+- Leverage churn prediction outputs to identify **high-risk customers** before disengagement becomes irreversible.
+- **Prioritize recall** to minimize missed churned customers.
+
+**Business Impact:**  
+Enables **timely intervention** and reduces unexpected **demand loss**.
+
+---
+
+#### 3️⃣ Improve Service Recovery & Complaint Resolution
+- Monitor **complaint activity** as a leading churn indicator.
+- Implement **faster resolution** and **follow-up** for customers who submit complaints.
+
+**Business Impact:**  
+Builds **customer trust** and prevents **service-related churn**.
+
+---
+
+#### 4️⃣ Integrate Logistics Performance into Retention Strategy
+- Analyze **delivery distance** and **fulfillment performance** for customers located farther from warehouses.
+- Set **clearer delivery expectations** or optimize **last-mile delivery options** for logistics-sensitive customers.
+
+**Business Impact:**  
+Improves **customer experience** and reduces churn driven by **fulfillment issues**.
+
+---
+
+#### 5️⃣ Apply Segment-Specific Retention Actions
+- **Early Drop-off Customers:** Focus on onboarding and early incentives.
+- **Disengaged Long-Tenure Customers:** Use re-engagement campaigns and personalized outreach.
+- **Logistics-Sensitive Customers:** Address delivery experience and operational constraints.
+
+**Business Impact:**  
+Improves efficiency by aligning retention actions with **customer behavior patterns**.
+
+---
+
+### 🎯 Strategic Takeaways
+
+- Churn should be viewed as a **cross-functional problem**, not solely a marketing issue.
+- Combining **predictive analytics** with **operational insights** enables more effective decision-making.
+- Integrating churn insights into **planning processes** supports **demand stability**, **service capacity planning**, and **customer experience improvement**.
+
+
