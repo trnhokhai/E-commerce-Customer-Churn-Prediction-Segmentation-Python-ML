@@ -120,11 +120,45 @@ The columns with missing values are:
    - `OrderCount` - 258 missing values
    - `DaySinceLastOrder` - 307 missing values
 
-**📝 Checked for Duplicates**  
+**Handling Missing Values** 
 [In 3]
+```python
+# Fill missing values with median (robust to outliers)
+for col in missing_cols:
+    df[col].fillna(df[col].median(), inplace=True)
+
+# Verify that there are no missing values left
+df[missing_cols].isnull().sum()
+```
+Missing values were concentrated in behavioral features related to engagement and purchasing activity.
+Median imputation was applied to preserve distribution shape and avoid skewing churn-related patterns.
+
+**📝 Checked for Duplicates**  
+[In 4]
 ```python
 # Check for duplicate rows
 check_dup = df.duplicated().sum()
 ```
-there were no duplicate entries.
+Aftering checkeing for duplicate rows in the dataset and found that there were no duplicate entries.
 
+**Cleaning & Standardizing Categorical Values** 
+
+# Standardize categorical values for consistency
+[In 5]
+```python
+df['PreferredPaymentMode'] = df['PreferredPaymentMode'].replace({
+    'COD': 'Cash on Delivery',
+    'CC': 'Credit Card'
+})
+```
+Standardizing categorical values prevents fragmented categories that could distort encoding and downstream model interpretation.
+
+**EDA Highlight: Churn Distribution**
+[In 6]
+```python
+sns.countplot(x='Churn', data=df)
+```
+[Out 6]
+<img width="581" height="427" alt="image" src="https://github.com/user-attachments/assets/1cf6e1bc-6414-4aab-84ae-410eeff5b422" />
+After preprocessing, the dataset is clean, consistent, and suitable for churn modeling.
+Key behavioral and operational variables are preserved, allowing downstream models to focus on meaningful churn drivers rather than data quality issues.
