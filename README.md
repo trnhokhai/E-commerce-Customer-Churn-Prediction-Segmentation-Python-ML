@@ -12,7 +12,7 @@ Key outcomes from this project include:
 - Building a churn prediction model that prioritizes recall to minimize missed churned customers.
 - Translating analytical insights into actionable business and operational recommendations to reduce churn.
 
-## Industry Context
+### Industry Context
 
 In the e-commerce industry, customer churn is a common challenge due to intense competition, low switching costs, and high customer expectations around pricing, delivery speed, and service quality.
 Retaining existing customers is often more cost-effective than acquiring new ones, making churn analysis a key priority for growth and profitability.
