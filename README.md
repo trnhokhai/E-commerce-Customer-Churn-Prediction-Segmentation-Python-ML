@@ -445,36 +445,15 @@ Customers fail to build initial engagement or perceive early value.
 
 ---
 
-#### 🔹 Cluster 1 – Disengaged Long-Tenure Customers
-- **Longer tenure** with **increasing inactivity**
-- Higher **days since last order**  
+### 🧩 Segment Interpretation
 
-**Interpretation:**  
-Previously engaged customers gradually disengage, often due to **declining experience** or **unresolved issues**.
+| Cluster | Segment Name | Key Characteristics | Interpretation |
+|--------|--------------|---------------------|----------------|
+| **0** | **Long-Tenure but Recently Churned Customers** | • Long tenure<br>• Higher historical engagement<br>• Increasing inactivity before churn | These customers were previously loyal but gradually disengaged. Churn is likely driven by declining experience, unresolved service issues, or unmet evolving expectations. |
+| **1** | **Early Drop-off Customers** | • Very short tenure<br>• Low engagement shortly after onboarding | Customers churn shortly after joining, indicating failure to perceive early value or friction during onboarding and initial usage. |
+| **2** | **Logistics-Sensitive Customers** | • Short-to-moderate tenure<br>• High warehouse-to-home distance<br>• Moderate engagement | Churn is more influenced by fulfillment and delivery experience than by engagement alone, highlighting the impact of last-mile logistics constraints. |
 
----
 
-#### 🔹 Cluster 2 – Logistics-Sensitive Customers
-- Higher **warehouse-to-home distance**
-- Moderate engagement but higher churn risk tied to **fulfillment experience**  
-
-**Interpretation:**  
-Churn is influenced more by **delivery experience and logistics constraints** than by engagement alone.
-
----
-
-### 🏢 Business & Operational Implications
-
-**Early Drop-off Customers**
-- Improve **onboarding**, **early incentives**, and **first-order experience**
-
-**Disengaged Long-Tenure Customers**
-- Prioritize **re-engagement campaigns** and **proactive service outreach**
-
-**Logistics-Sensitive Customers**
-- Review **last-mile delivery strategies** and set **clearer delivery expectations**
-
----
 
 Segmentation highlights that **churn is not a single behavior**, and effective retention strategies must be **segment-specific**.
 
