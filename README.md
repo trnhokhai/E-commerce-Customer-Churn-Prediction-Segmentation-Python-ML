@@ -167,7 +167,7 @@ df['PreferredPaymentMode'] = df['PreferredPaymentMode'].replace({
 ```
 Standardizing categorical values prevents fragmented categories that could distort encoding and downstream model interpretation.
 
-## 2. EDA
+## 2. Exploratory Data Analysis (EDA)
 
 **Churn Distribution**
 
