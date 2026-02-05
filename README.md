@@ -50,7 +50,7 @@ The objective of this project is to:
 ### 📌 **Data Source**  
 **Source:** The dataset is obtained from the e-commerce company's database.  
 **Size:** The dataset contains 5,630 rows and 20 columns.  
-**Format:** .xlxs file format.
+**Format:** .xlsx file format
 
 ### 📊 **Data Structure & Relationships**
 
@@ -216,6 +216,8 @@ Rather than optimizing for overall accuracy, the modeling approach **prioritizes
 
 **Feature Selection & Target Definition**
 
+Categorical variables were encoded to numerical representations to ensure model compatibility.
+
 ```python
 # Define features and target
 
@@ -255,13 +257,16 @@ print(classification_report(y_test, y_pred_lr))
 
 <img width="457" height="162" alt="image" src="https://github.com/user-attachments/assets/d138f2c1-97ae-4cba-8915-08a993af014f" />
 
-##### 💡 Insight
+**💡 Insight **
 
 • The baseline logistic regression model demonstrates that customer churn is predictable using the available customer data.
 
 • The model achieves strong recall for churned customers, indicating its ability to identify most at-risk customers.
 
 • However, low precision suggests a high number of false positives, motivating the use of more flexible models to improve decision quality.
+
+• In practical terms, the model is good at catching customers who may leave, but it sometimes overestimates churn risk.
+
 
 #### 🌲 Random Forest Classifier
 
@@ -283,9 +288,9 @@ print(classification_report(y_test, y_pred_rf))
 <img width="430" height="172" alt="image" src="https://github.com/user-attachments/assets/8171721b-f236-43b5-be08-82c85cc9ba6d" />
 
 
-💡 Insight
+**💡 Insight**
 
-• The Random Forest model provides more accurate and reliable churn predictions compared to the baseline model.
+• The Random Forest model provides more balanced and reliable churn predictions compared to the baseline model
 • It significantly reduces false churn alerts while still identifying most at-risk customers.
 • This makes the model more practical for real-world retention decision-making.
 
@@ -430,7 +435,7 @@ cluster_summary
 ```
 <img width="657" height="155" alt="image" src="https://github.com/user-attachments/assets/23f2789f-ad9e-4ea4-8202-949d62dbf1d1" />
 
-
+These segments are intended to guide strategic decision-making rather than serve as fixed customer labels.
 
 ### 🧩 Segment Interpretation & Business Implications
 
