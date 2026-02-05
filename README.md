@@ -153,31 +153,18 @@ check_dup = df.duplicated().sum()
 ```
 No duplicate customer records were found, confirming that each row represents a unique customer.
 
-**Cleaning & Standardizing Categorical Values** 
-
-**Standardize categorical values for consistency**
-
-[In 5]
-
-```python
-df['PreferredPaymentMode'] = df['PreferredPaymentMode'].replace({
-    'COD': 'Cash on Delivery',
-    'CC': 'Credit Card'
-})
-```
-Standardizing categorical values prevents fragmented categories that could distort encoding and downstream model interpretation.
 
 ## 2. Exploratory Data Analysis (EDA)
 
 **Churn Distribution**
 
-[In 6]
+[In 5]
 
 ```python
 sns.countplot(x='Churn', data=df)
 ```
 
-[Out 6]
+[Out 5]
 
 <img width="581" height="427" alt="image" src="https://github.com/user-attachments/assets/1cf6e1bc-6414-4aab-84ae-410eeff5b422" />
 
