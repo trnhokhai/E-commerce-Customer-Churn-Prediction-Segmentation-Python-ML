@@ -88,7 +88,8 @@ The dataset contains only **1 table** with customer and transaction-related data
 
 </details>
 
-## 1. Data Preprocessing 
+## Main Processing
+### 1. Data Preprocessing 
 
 Before modeling, the dataset was reviewed and prepared to ensure data quality and consistency.
 
@@ -140,7 +141,6 @@ for col in missing_cols:
 # Verify that there are no missing values left
 df[missing_cols].isnull().sum()
 ```
-### 🧠 Rationale for Missing Value Treatment
 
 - **Median imputation** was applied to preserve the original data distribution and minimize sensitivity to outliers.
 - This approach helps maintain **churn-related behavioral patterns** while ensuring **model compatibility and stability**.
@@ -170,7 +170,9 @@ Standardizing categorical values prevents fragmented categories that could disto
 ## 2. EDA
 
 **Churn Distribution**
+
 [In 6]
+
 ```python
 sns.countplot(x='Churn', data=df)
 ```
@@ -208,7 +210,7 @@ plt.show()
 
 <img width="686" height="471" alt="image" src="https://github.com/user-attachments/assets/afb131ed-cd53-463a-84b6-e9d9dc85dc8b" />
 
-## 📊 Key Insights & Business Implications
+### 📊 Key Insights & Business Implications
 
 | Analysis Area | Insight | Business Implication |
 |--------------|--------|----------------------|
