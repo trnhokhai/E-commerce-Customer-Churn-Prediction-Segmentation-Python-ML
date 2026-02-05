@@ -208,13 +208,14 @@ plt.show()
 
 These insights highlight that churn is most likely to occur early in the customer lifecycle and is strongly influenced by service experience, making early engagement and complaint resolution the most actionable retention levers.
 
-## 3. 🔮 Churn Prediction – Identifying At-Risk Customers
+### 3. 🔮 Churn Prediction – Identifying At-Risk Customers
 
 The objective of this step is to determine whether **customer churn can be predicted in advance** using **behavioral, service, and logistics-related features**, enabling **early intervention and retention planning**.
 
 Rather than optimizing for overall accuracy, the modeling approach **prioritizes recall**, as failing to identify **churned customers** carries a **higher business cost** than false positives.
 
 **Feature Selection & Target Definition**
+
 ```python
 # Define features and target
 
@@ -243,7 +244,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 - **Stratified splitting** preserves the original **churn ratio** in both the training and testing sets.
 - This ensures **reliable model evaluation** under **class imbalance**.
 
-###**Baseline Model: Logistic Regression**
+####**Baseline Model: Logistic Regression**
 ```python
 log_reg = LogisticRegression(max_iter=1000)
 log_reg.fit(X_train, y_train)
@@ -254,7 +255,7 @@ print(classification_report(y_test, y_pred_lr))
 
 <img width="457" height="162" alt="image" src="https://github.com/user-attachments/assets/d138f2c1-97ae-4cba-8915-08a993af014f" />
 
-#### 💡 Insight
+##### 💡 Insight
 
 • The baseline logistic regression model demonstrates that customer churn is predictable using the available customer data.
 
@@ -262,7 +263,7 @@ print(classification_report(y_test, y_pred_lr))
 
 • However, low precision suggests a high number of false positives, motivating the use of more flexible models to improve decision quality.
 
-### 🌲 Random Forest Classifier
+#### 🌲 Random Forest Classifier
 
 ```python
 from sklearn.ensemble import RandomForestClassifier
@@ -303,7 +304,7 @@ From a business perspective, churn prediction enables:
 
 The model serves as a decision-support tool, not an automated decision-maker.
 
-## 🔑 Key Churn Drivers & Model Interpretation
+### 🔑 Key Churn Drivers & Model Interpretation
 
 This section focuses on explaining **why customers churn**, using **model interpretation** to translate predictive results into **actionable business and operational insights**.
 
@@ -323,19 +324,20 @@ feature_importance = feature_importance.sort_values(
 ```
 <img width="882" height="457" alt="image" src="https://github.com/user-attachments/assets/555ded13-f5b8-46a3-ae8c-f755a979584e" />
 
-### 🔑 Key Drivers Identified
+#### 🔑 Key Drivers Identified
 
 The most influential churn drivers include:
 
 - **Tenure**
-- **DaySinceLastOrder**
 - **CashbackAmount**
 - **Complain**
 - **WarehouseToHome**
+- **DaySinceLastOrder**
+
 
 These features capture a combination of **customer lifecycle**, **engagement behavior**, **service quality**, and **logistics experience**.
 
-### 💡 Insights
+#### 💡 Insights
 
 **Customer lifecycle matters:**  
 Customers with **shorter tenure** and **longer gaps since their last order** are significantly more likely to churn, indicating **early disengagement patterns**.
@@ -349,9 +351,7 @@ Greater **warehouse-to-home distance** correlates with higher churn risk, sugges
 **Incentives alone are insufficient:**  
 While **cashback** impacts retention, it cannot fully compensate for **poor engagement** or **service issues**.
 
-## 🏭 Business & Supply Chain Implications
-
-From an **operational and supply chain perspective**:
+#### 🏭 Business Implications
 
 - Churn is not driven by a single factor, but by the **interaction of engagement, service, and logistics performance**.
 - Monitoring **lifecycle and recency metrics** enables **early detection of potential demand loss**.
