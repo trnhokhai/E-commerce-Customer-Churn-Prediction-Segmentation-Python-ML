@@ -208,7 +208,7 @@ plt.show()
 
 These insights highlight that churn is most likely to occur early in the customer lifecycle and is strongly influenced by service experience, making early engagement and complaint resolution the most actionable retention levers.
 
-## 🔮 Churn Prediction – Identifying At-Risk Customers
+## 3. 🔮 Churn Prediction – Identifying At-Risk Customers
 
 The objective of this step is to determine whether **customer churn can be predicted in advance** using **behavioral, service, and logistics-related features**, enabling **early intervention and retention planning**.
 
@@ -224,7 +224,6 @@ X = df.drop(columns=['CustomerID', 'Churn'])
 print("Feature shape:", X.shape)
 print("Target shape:", y.shape)
 ```
-### 🧠 Rationale
 
 - Input features capture signals related to **customer lifecycle**, **engagement**, **service experience**, and **logistics**.
 - The target variable (**Churn**) represents whether a customer has **left the platform**.
@@ -240,7 +239,6 @@ X_train, X_test, y_train, y_test = train_test_split(
     stratify=y
 )
 ```
-### 🧠 Rationale
 
 - **Stratified splitting** preserves the original **churn ratio** in both the training and testing sets.
 - This ensures **reliable model evaluation** under **class imbalance**.
@@ -258,8 +256,9 @@ print(classification_report(y_test, y_pred_lr))
 
 ### 💡 Insight
 
-- The baseline model confirms that **customer churn can be predicted** using the available customer data.
-- However, **recall for churned customers is limited**, motivating the use of a **more flexible model**.
+• The baseline logistic regression model demonstrates that customer churn is predictable using the available customer data.
+• The model achieves strong recall for churned customers, indicating its ability to identify most at-risk customers.
+• However, low precision suggests a high number of false positives, motivating the use of more flexible models to improve decision quality.
 
 ## 🌲 Final Model: Random Forest Classifier
 
