@@ -288,23 +288,20 @@ print(classification_report(y_test, y_pred_rf))
 • It significantly reduces false churn alerts while still identifying most at-risk customers.
 • This makes the model more practical for real-world retention decision-making.
 
-# 📊 Model Evaluation Summary
+### 📊 Model Evaluation Summary
 
-### 🔑 Key Takeaways
+#### 🔑 Key Takeaways
+• Customer churn can be predicted with meaningful reliability using behavioral, service, and logistics data.  
+• Prioritizing recall helps minimize missed churned customers, enabling earlier and more proactive retention efforts.  
+• Tree-based models capture complex customer behavior patterns more effectively than simpler baseline models.
 
-- Customer churn can be predicted with **meaningful reliability** using **behavioral, service, and logistics data**.
-- **Prioritizing recall** helps minimize missed churned customers, supporting **proactive retention efforts**.
-- **Tree-based models** better capture **non-linear customer behavior patterns** compared to linear baselines.
+### 🏢 Business Interpretation
+Fro#m a business and supply chain perspective, churn prediction enables:
+• Early identification of potential demand loss  
+• Targeted retention actions before customers disengage completely  
+• Improved planning for customer support and operational resources  
 
-## 🏢 Business Interpretation
-
-From a **business and supply chain perspective**, churn prediction enables:
-
-- **Early identification** of potential demand loss
-- **Targeted retention actions** before customers disengage completely
-- **Improved planning** for customer support and operational resources
-
-The model serves as a **decision-support tool**, not an **automated decision-maker**.
+The model serves as a decision-support tool, not an automated decision-maker.
 
 ## 🔑 Key Churn Drivers & Model Interpretation
 
