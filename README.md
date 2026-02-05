@@ -464,49 +464,15 @@ The objective is to translate analytics into decisions that **reduce customer ch
 
 ### 🧠 Strategic Business Recommendations
 
-#### 1️⃣ Strengthen Early Customer Engagement
-- Focus on customers with **short tenure** and **declining early engagement** through improved onboarding and early engagement initiatives.
-- Ensure a smooth and positive **first-order experience** to reduce early-stage churn.
 
-**Business Impact:**  
-Reduces early customer drop-off and increases **customer lifetime value**.
+| # | Recommendation | Key Actions | Business Impact |
+|---|----------------|-------------|-----------------|
+| **1** | **Strengthen Early Customer Engagement** | • Improve onboarding for new customers<br>• Enhance early engagement and first-order experience | Reduces early-stage churn and increases customer lifetime value |
+| **2** | **Use Churn Risk Signals for Proactive Retention** | • Identify customers at risk of leaving early<br>• Focus on capturing as many at-risk customers as possible | Enables earlier intervention and reduces unexpected revenue and demand loss |
+| **3** | **Improve Service Recovery & Complaint Resolution** | • Monitor customer complaints as early warning signals<br>• Implement faster resolution and proactive follow-up | Builds customer trust and reduces service-related churn |
+| **4** | **Integrate Logistics Performance into Retention Strategy** | • Evaluate delivery distance and fulfillment performance<br>• Improve last-mile delivery or set clearer delivery expectations | Improves customer experience and reduces churn driven by fulfillment issues |
+| **5** | **Apply Segment-Specific Retention Actions** | • Tailor actions by churn segment (onboarding, re-engagement, logistics)<br>• Align retention efforts with customer behavior patterns | Improves retention efficiency through targeted and focused actions |
 
----
-
-#### 2️⃣ Use Churn Risk Signals for Proactive Retention
-- Use churn prediction outputs to identify **customers at risk of leaving** before disengagement becomes irreversible.
-- Emphasize capturing as many at-risk customers as possible to avoid missing potential churn cases.
-
-**Business Impact:**  
-Enables **earlier intervention**, helping prevent unexpected **revenue and demand loss**.
-
----
-
-#### 3️⃣ Improve Service Recovery & Complaint Resolution
-- Treat **customer complaints** as early warning signals for churn.
-- Implement faster resolution processes and proactive follow-up for customers who report service issues.
-
-**Business Impact:**  
-Builds **customer trust**, improves satisfaction, and reduces **service-related churn**.
-
----
-
-#### 4️⃣ Integrate Logistics Performance into Retention Strategy
-- Assess **delivery distance** and **fulfillment performance**, especially for customers located farther from distribution centers.
-- Set clearer delivery expectations or explore optimized **last-mile delivery solutions** for logistics-sensitive customers.
-
-**Business Impact:**  
-Improves customer experience and reduces churn driven by **fulfillment and delivery constraints**.
-
----
-
-#### 5️⃣ Apply Segment-Specific Retention Actions
-- **Early Drop-off Customers:** Prioritize onboarding improvements and early incentives.
-- **Long-Tenure but Disengaged Customers:** Deploy re-engagement campaigns and personalized outreach.
-- **Logistics-Sensitive Customers:** Address delivery experience and operational limitations.
-
-**Business Impact:**  
-Improves retention efficiency by aligning actions with **distinct customer behavior patterns**.
 
 ---
 
