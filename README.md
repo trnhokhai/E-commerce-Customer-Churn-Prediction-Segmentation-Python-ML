@@ -447,11 +447,14 @@ Customers fail to build initial engagement or perceive early value.
 
 ### 🧩 Segment Interpretation
 
-| Cluster | Segment Name | Key Characteristics | Interpretation |
-|--------|--------------|---------------------|----------------|
-| **0** | **Long-Tenure but Recently Churned Customers** | • Long tenure<br>• Higher historical engagement<br>• Increasing inactivity before churn | These customers were previously loyal but gradually disengaged. Churn is likely driven by declining experience, unresolved service issues, or unmet evolving expectations. |
-| **1** | **Early Drop-off Customers** | • Very short tenure<br>• Low engagement shortly after onboarding | Customers churn shortly after joining, indicating failure to perceive early value or friction during onboarding and initial usage. |
-| **2** | **Logistics-Sensitive Customers** | • Short-to-moderate tenure<br>• High warehouse-to-home distance<br>• Moderate engagement | Churn is more influenced by fulfillment and delivery experience than by engagement alone, highlighting the impact of last-mile logistics constraints. |
+### 🧩 Segment Interpretation & Business Implications
+
+| Cluster | Segment Name | Key Characteristics | Interpretation | Business & Operational Implications |
+|--------|--------------|---------------------|----------------|-------------------------------------|
+| **0** | **Long-Tenure but Recently Churned Customers** | • Long tenure<br>• Higher historical engagement<br>• Increasing inactivity before churn | These customers were previously loyal but gradually disengaged due to declining experience or unresolved issues. | • Launch proactive re-engagement campaigns<br>• Prioritize service outreach and issue resolution<br>• Monitor recency signals for early intervention |
+| **1** | **Early Drop-off Customers** | • Very short tenure<br>• Low early engagement | Customers churn shortly after onboarding, failing to perceive early value or encountering onboarding friction. | • Improve onboarding experience and first-order success<br>• Provide early incentives and guided engagement<br>• Set clearer expectations during signup |
+| **2** | **Logistics-Sensitive Customers** | • Short-to-moderate tenure<br>• High warehouse-to-home distance<br>• Moderate engagement | Churn is driven more by fulfillment and delivery experience than engagement alone. | • Review last-mile delivery strategies<br>• Improve delivery transparency and timelines<br>• Align logistics performance with retention planning |
+
 
 
 
