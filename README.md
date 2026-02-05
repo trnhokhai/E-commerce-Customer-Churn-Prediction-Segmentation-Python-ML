@@ -243,7 +243,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 - **Stratified splitting** preserves the original **churn ratio** in both the training and testing sets.
 - This ensures **reliable model evaluation** under **class imbalance**.
 
-**Baseline Model: Logistic Regression**
+###**Baseline Model: Logistic Regression**
 ```python
 log_reg = LogisticRegression(max_iter=1000)
 log_reg.fit(X_train, y_train)
@@ -254,7 +254,7 @@ print(classification_report(y_test, y_pred_lr))
 
 <img width="457" height="162" alt="image" src="https://github.com/user-attachments/assets/d138f2c1-97ae-4cba-8915-08a993af014f" />
 
-### 💡 Insight
+#### 💡 Insight
 
 • The baseline logistic regression model demonstrates that customer churn is predictable using the available customer data.
 
@@ -262,7 +262,7 @@ print(classification_report(y_test, y_pred_lr))
 
 • However, low precision suggests a high number of false positives, motivating the use of more flexible models to improve decision quality.
 
-## 🌲 Final Model: Random Forest Classifier
+### 🌲 Random Forest Classifier
 
 ```python
 from sklearn.ensemble import RandomForestClassifier
@@ -295,8 +295,8 @@ print(classification_report(y_test, y_pred_rf))
 • Prioritizing recall helps minimize missed churned customers, enabling earlier and more proactive retention efforts.  
 • Tree-based models capture complex customer behavior patterns more effectively than simpler baseline models.
 
-### 🏢 Business Interpretation
-Fro#m a business and supply chain perspective, churn prediction enables:
+#### 🏢 Business Interpretation
+From a business perspective, churn prediction enables:
 • Early identification of potential demand loss  
 • Targeted retention actions before customers disengage completely  
 • Improved planning for customer support and operational resources  
