@@ -282,10 +282,11 @@ print(classification_report(y_test, y_pred_rf))
 <img width="430" height="172" alt="image" src="https://github.com/user-attachments/assets/8171721b-f236-43b5-be08-82c85cc9ba6d" />
 
 
-### 💡 Insight
+💡 Insight
 
-- The **Random Forest model** improves **recall for churned customers** compared to the baseline model.
-- This makes it more suitable for **identifying at-risk customers** in a **business setting**.
+• The Random Forest model provides more accurate and reliable churn predictions compared to the baseline model.
+• It significantly reduces false churn alerts while still identifying most at-risk customers.
+• This makes the model more practical for real-world retention decision-making.
 
 # 📊 Model Evaluation Summary
 
