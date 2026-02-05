@@ -17,6 +17,17 @@ Key outcomes from this project include:
 In the e-commerce industry, customer churn is a common challenge due to intense competition, low switching costs, and high customer expectations around pricing, delivery speed, and service quality.
 Retaining existing customers is often more cost-effective than acquiring new ones, making churn analysis a key priority for growth and profitability.
 
+## 📑 Table of Contents
+
+- [📌 Background & Overview](#-background--overview)
+- [📂 Dataset Description & Data Structure](#-dataset-description--data-structure)
+- [⚒️ Exploratory Data Analysis (EDA)](#-exploratory-data-analysis-eda)
+- [🔮 Churn Prediction – Identifying At-Risk Customers](#-churn-prediction--identifying-at-risk-customers)
+- [🔑 Key Churn Drivers & Model Interpretation](#-key-churn-drivers--model-interpretation)
+- [👥 Customer Segmentation – Understanding Different Types of Churned Customers](#-customer-segmentation--understanding-different-types-of-churned-customers)
+- [📈 Business Recommendations & Strategic Takeaways](#-business-recommendations--strategic-takeaways)
+
+
 ## 📌 Background & Overview
 
 This project focuses on analyzing customer-level behavioral and operational data to understand churn patterns in an e-commerce business.
