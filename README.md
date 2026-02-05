@@ -309,7 +309,7 @@ From a business perspective, churn prediction enables:
 
 The model serves as a decision-support tool, not an automated decision-maker.
 
-### 🔑 Key Churn Drivers & Model Interpretation
+### 4. 🔑 Key Churn Drivers & Model Interpretation
 
 This section focuses on explaining **why customers churn**, using **model interpretation** to translate predictive results into **actionable business and operational insights**.
 
@@ -365,7 +365,7 @@ While **cashback** impacts retention, it cannot fully compensate for **poor enga
 These insights directly inform **targeted retention strategies** and **operational improvement initiatives**.
 
 
-## 7. 👥 Customer Segmentation – Understanding Different Types of Churned Customers
+## 5. 👥 Customer Segmentation – Understanding Different Types of Churned Customers
 
 While **churn prediction** identifies **who is at risk**, **segmentation** helps explain **how churned customers differ from one another**.
 
@@ -450,7 +450,7 @@ These segments are intended to guide strategic decision-making rather than serve
 
 Segmentation highlights that **churn is not a single behavior**, and effective retention strategies must be **segment-specific**.
 
-## 8. 📈 Business Recommendations & Strategic Takeaways
+## 📈 Business Recommendations & Strategic Takeaways
 
 This section consolidates insights from **exploratory data analysis**, **churn prediction**, and **customer segmentation** into **clear, actionable business and operational recommendations**.
 
