@@ -88,7 +88,7 @@ The dataset contains only **1 table** with customer and transaction-related data
 
 </details>
 
-## Main Processing
+## ⚒️ Main Processing
 ### 1. Data Preprocessing 
 
 Before modeling, the dataset was reviewed and prepared to ensure data quality and consistency.
