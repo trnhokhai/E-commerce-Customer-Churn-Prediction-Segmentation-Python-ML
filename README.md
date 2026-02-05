@@ -88,14 +88,14 @@ The dataset contains only **1 table** with customer and transaction-related data
 
 </details>
 
-## Data Preprocessing & Exploratory Analysis (Selected)
+## 1. Data Preprocessing 
 
 Before modeling, the dataset was reviewed and prepared to ensure data quality and consistency.
 
 Key preprocessing steps included:
 - Handling missing values in key behavioral and transactional features.
 - Standardizing categorical values with similar meanings (e.g., payment methods).
-- Dropping identifier columns that do not contribute to prediction.
+
 
 [In 1]
 ```python
@@ -104,7 +104,6 @@ df.head()
 [Out 1]
 <img width="1387" height="221" alt="image" src="https://github.com/user-attachments/assets/4c23db61-2215-47b3-9c71-7af72eafdba1" />
 
-This initial review confirms the dataset structure, feature types, and customer-level granularity used throughout the analysis.
 
 **📝 Checked for Missing Values**  
 [In 2]
@@ -112,7 +111,6 @@ This initial review confirms the dataset structure, feature types, and customer-
 # Check missing values in each column
 df.isnull().sum()
 ```
-### 🔍 Key Observations
 
 - Missing values are primarily concentrated in **behavioral and transactional features**, including:
   - Customer tenure
@@ -122,7 +120,7 @@ df.isnull().sum()
 
 - These features are **directly related to the customer lifecycle and purchasing behavior**, making proper handling of missing values **critical for accurate churn modeling**.
 
-#### 📌 Columns with Missing Values
+📌 Columns with Missing Values
 - **Tenure**
 - **WarehouseToHome**
 - **HourSpendOnApp**
@@ -130,7 +128,9 @@ df.isnull().sum()
 - **CouponUsed**
 - **OrderCount**
 - **DaySinceLastOrder**
+
 **Handling Missing Values** 
+
 [In 3]
 ```python
 # Fill missing values with median (robust to outliers)
@@ -156,7 +156,9 @@ No duplicate customer records were found, confirming that each row represents a 
 **Cleaning & Standardizing Categorical Values** 
 
 **Standardize categorical values for consistency**
+
 [In 5]
+
 ```python
 df['PreferredPaymentMode'] = df['PreferredPaymentMode'].replace({
     'COD': 'Cash on Delivery',
@@ -164,6 +166,8 @@ df['PreferredPaymentMode'] = df['PreferredPaymentMode'].replace({
 })
 ```
 Standardizing categorical values prevents fragmented categories that could distort encoding and downstream model interpretation.
+
+## 2. EDA
 
 **Churn Distribution**
 [In 6]
@@ -175,40 +179,13 @@ sns.countplot(x='Churn', data=df)
 
 <img width="581" height="427" alt="image" src="https://github.com/user-attachments/assets/1cf6e1bc-6414-4aab-84ae-410eeff5b422" />
 
-### 💡 Insight
-
-- The dataset exhibits **class imbalance**, with **churned customers representing a smaller proportion** of the overall customer base.
-
-### 📊 Business Implication
-
-- Although churn is a **minority event**, it carries **high business impact**.
-- Therefore, models should **prioritize recall** to reduce the risk of missing **at-risk customers** and enable **proactive retention actions**.
-
-
-**Customer Lifecycle: Tenure vs Churn
+**Customer Lifecycle: Tenure vs Churn**
 
 <img width="480" height="460" alt="image" src="https://github.com/user-attachments/assets/e18620b6-12e5-4456-9ff8-5476376af213" />
-
-### 💡 Insight
-
-- Churned customers tend to have **significantly shorter tenure**, indicating **early disengagement**.
-
-### 📊 Business Implication
-
-- Improving **early-stage onboarding and engagement** is critical to **reducing churn risk**.
 
 **Engagement Recency: Days Since Last Order**
 
 <img width="557" height="432" alt="image" src="https://github.com/user-attachments/assets/83ef973d-0e1c-465f-ba58-5f500baeec83" />
-
-### 💡 Insight
-
-- Churned customers typically have **longer gaps since their last order**, signaling **declining engagement** before churn occurs.
-
-### 📊 Business Implication
-
-- **Recency metrics** can be used as **early warning signals** to enable **proactive customer retention actions**.
-
 
 **Service Experience: Complaints vs Churn**
 
@@ -231,18 +208,16 @@ plt.show()
 
 <img width="686" height="471" alt="image" src="https://github.com/user-attachments/assets/afb131ed-cd53-463a-84b6-e9d9dc85dc8b" />
 
-### 💡 Insight
+## 📊 Key Insights & Business Implications
 
-- Customers who submitted **complaints** show **substantially higher churn rates** compared to those without complaints.
+| Analysis Area | Insight | Business Implication |
+|--------------|--------|----------------------|
+| **Churn Distribution** | The dataset exhibits class imbalance, with churned customers representing a smaller proportion of the overall customer base. | Although churn is a minority event, it carries high business impact. Models should prioritize **recall** to reduce the risk of missing at-risk customers and enable proactive retention actions. |
+| **Customer Lifecycle: Tenure vs Churn** | Churned customers tend to have significantly shorter tenure, indicating early disengagement. | Improving **early-stage onboarding and engagement** is critical to reducing churn risk. |
+| **Engagement Recency: Days Since Last Order** | Churned customers typically have longer gaps since their last order, signaling declining engagement before churn occurs. | **Recency metrics** can be used as early warning signals to enable proactive customer retention actions. |
+| **Service Experience: Complaints vs Churn** | Customers who submitted complaints show substantially higher churn rates compared to those without complaints. | **Service recovery and effective complaint resolution** play a critical role in customer retention. |
 
-### 📊 Business Implication
-
-- **Service recovery and effective complaint resolution** play a critical role in **customer retention**.
-
-### 🧾 Summary of EDA Insights
-
-- Churn is closely linked to **customer lifecycle and engagement patterns**.
-- **Service quality**, particularly **customer complaints**, is a strong indicator of churn.
+These insights highlight that churn is most likely to occur early in the customer lifecycle and is strongly influenced by service experience, making early engagement and complaint resolution the most actionable retention levers.
 
 ## 🔮 Churn Prediction – Identifying At-Risk Customers
 
