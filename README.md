@@ -1,6 +1,8 @@
 # E-commerce-Customer-Churn-Prediction-Segmentation-Python-ML
 Build a churn model and segment churned users to support targeted retention offers and operational improvements.
 
+![image alt](https://github.com/trnhokhai/E-commerce-Customer-Churn-Prediction-Segmentation-Python-ML/blob/ddc0e3391a17f14511f8c59df59060d49d35a560/Customer%20Churn%20Background.png)
+
 ## What this project is about
 
 Customer churn is a critical challenge for e-commerce businesses, as losing existing customers directly impacts revenue and increases acquisition costs.
