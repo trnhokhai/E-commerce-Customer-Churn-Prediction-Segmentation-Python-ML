@@ -257,7 +257,9 @@ print(classification_report(y_test, y_pred_lr))
 ### 💡 Insight
 
 • The baseline logistic regression model demonstrates that customer churn is predictable using the available customer data.
+
 • The model achieves strong recall for churned customers, indicating its ability to identify most at-risk customers.
+
 • However, low precision suggests a high number of false positives, motivating the use of more flexible models to improve decision quality.
 
 ## 🌲 Final Model: Random Forest Classifier
