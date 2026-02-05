@@ -430,22 +430,7 @@ cluster_summary
 ```
 <img width="657" height="155" alt="image" src="https://github.com/user-attachments/assets/23f2789f-ad9e-4ea4-8202-949d62dbf1d1" />
 
-### 🧩 Segment Interpretation
 
-Based on cluster profiling, **three distinct churn segments** emerge:
-
----
-
-#### 🔹 Cluster 0 – Early Drop-off Customers
-- **Short tenure** and **low engagement**
-- Churn shortly after onboarding  
-
-**Interpretation:**  
-Customers fail to build initial engagement or perceive early value.
-
----
-
-### 🧩 Segment Interpretation
 
 ### 🧩 Segment Interpretation & Business Implications
 
